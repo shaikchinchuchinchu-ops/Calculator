@@ -1,0 +1,502 @@
+/* ==============================
+   RESET
+============================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ==============================
+   BODY
+============================== */
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 16px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #292929 0%,
+            #111 55%,
+            #080808 100%
+        );
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+}
+
+
+/* ==============================
+   CALCULATOR
+============================== */
+
+.calculator {
+    width: min(100%, 400px);
+
+    padding: 20px;
+
+    background: rgba(35, 35, 35, 0.96);
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* ==============================
+   HEADER
+============================== */
+
+.calculator-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+.calculator-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.calculator-header span {
+    padding: 5px 9px;
+
+    border-radius: 8px;
+
+    background: #333;
+
+    color: #aaa;
+
+    font-size: 11px;
+}
+
+
+/* ==============================
+   DISPLAY
+============================== */
+
+.display-container {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+#display {
+    width: 100%;
+
+    height: clamp(75px, 18vw, 95px);
+
+    padding: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.06);
+
+    outline: none;
+
+    border-radius: 17px;
+
+    background: #0b0b0b;
+
+    color: white;
+
+    font-size: clamp(30px, 8vw, 42px);
+
+    font-weight: 500;
+
+    text-align: right;
+
+    box-shadow:
+        inset 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+
+/* ==============================
+   BUTTON GRID
+============================== */
+
+.buttons {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 10px;
+}
+
+
+/* ==============================
+   BUTTONS
+============================== */
+
+button {
+    min-width: 0;
+
+    height: clamp(58px, 15vw, 72px);
+
+    border: none;
+
+    border-radius: 17px;
+
+    background: #414141;
+
+    color: white;
+
+    font-size: clamp(19px, 5vw, 25px);
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    user-select: none;
+
+    -webkit-tap-highlight-color: transparent;
+
+    transition:
+        transform 0.08s ease,
+        filter 0.15s ease,
+        background 0.15s ease;
+}
+
+
+/* Hover */
+
+button:hover {
+    filter: brightness(1.15);
+}
+
+
+/* Press */
+
+button:active {
+    transform: scale(0.93);
+}
+
+
+/* ==============================
+   FUNCTION BUTTONS
+============================== */
+
+.function {
+    background: #555;
+}
+
+
+/* ==============================
+   OPERATORS
+============================== */
+
+.operator {
+    background: #ff9500;
+}
+
+
+/* ==============================
+   EQUAL
+============================== */
+
+.equal {
+    background: #2196f3;
+}
+
+
+/* ==============================
+   ZERO
+============================== */
+
+.zero {
+    grid-column: span 2;
+}
+
+
+/* ==============================
+   HISTORY
+============================== */
+
+.history {
+    margin-top: 20px;
+
+    padding-top: 17px;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/* History header */
+
+.history-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+
+.history-header h2 {
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* Clear history */
+
+.clear-history {
+    width: auto;
+
+    height: 35px;
+
+    padding: 0 13px;
+
+    border-radius: 9px;
+
+    background: #3d3d3d;
+
+    font-size: 13px;
+}
+
+
+/* History list */
+
+.history-list {
+    max-height: 180px;
+
+    overflow-y: auto;
+
+    padding-right: 3px;
+}
+
+
+/* Scrollbar */
+
+.history-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.history-list::-webkit-scrollbar-thumb {
+    background: #555;
+
+    border-radius: 10px;
+}
+
+
+/* History item */
+
+.history-item {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 11px 5px;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
+
+    animation:
+        historyAppear 0.2s ease;
+}
+
+
+/* History animation */
+
+@keyframes historyAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* Expression */
+
+.history-expression {
+    color: #aaa;
+
+    font-size: 14px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* Result */
+
+.history-result {
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* Empty history */
+
+.empty-history {
+    padding: 12px;
+
+    color: #777;
+
+    text-align: center;
+
+    font-size: 14px;
+}
+
+
+/* ==============================
+   KEYBOARD HINT
+============================== */
+
+.keyboard-hint {
+    margin-top: 15px;
+
+    color: #666;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+
+/* ==============================
+   SMALL PHONES
+============================== */
+
+@media (max-width: 360px) {
+
+    body {
+        padding: 9px;
+    }
+
+    .calculator {
+        padding: 14px;
+
+        border-radius: 21px;
+    }
+
+    .buttons {
+        gap: 7px;
+    }
+
+    button {
+        height: 55px;
+
+        border-radius: 13px;
+    }
+
+    .history {
+        margin-top: 15px;
+    }
+
+}
+
+
+/* ==============================
+   LANDSCAPE PHONE
+============================== */
+
+@media
+(max-height: 500px)
+and (orientation: landscape) {
+
+    body {
+        align-items: flex-start;
+
+        padding: 10px;
+    }
+
+    .calculator {
+        width: min(600px, 100%);
+
+        padding: 12px;
+    }
+
+    .calculator-header {
+        margin-bottom: 7px;
+    }
+
+    #display {
+        height: 55px;
+
+        margin-bottom: 8px;
+
+        font-size: 27px;
+    }
+
+    .buttons {
+        gap: 7px;
+    }
+
+    button {
+        height: 45px;
+    }
+
+    .history {
+        margin-top: 10px;
+    }
+
+    .history-list {
+        max-height: 90px;
+    }
+
+    .keyboard-hint {
+        display: none;
+    }
+
+}
+
+
+/* ==============================
+   DESKTOP
+============================== */
+
+@media (min-width: 700px) {
+
+    .calculator {
+        width: 400px;
+    }
+
+    button:hover {
+        transform: translateY(-1px);
+    }
+
+}
